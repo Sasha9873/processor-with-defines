@@ -1,0 +1,332 @@
+Called from stack_ctor() at stack.cpp(31),
+Stack[0x561e7b1da2a0](ok)
+{
+   capacity = 3
+   current size = 0
+   data[0x561e7b1da2b0] = 0x561e7b1da870
+   {
+      [0](0x561e7b1da870, 0x561e7b1da870) = 0
+      [1](0x561e7b1da874, 0x561e7b1da874) = 0
+      [2](0x561e7b1da878, 0x561e7b1da878) = 0
+   }
+   file_with_errors[0x561e7b1da2c0] = 0x561e7b1da690
+}
+
+Called from stack_push() at stack.cpp(151),
+Stack[0x561e7b1da2a0](ok)
+{
+   capacity = 3
+   current size = 1
+   data[0x561e7b1da2b0] = 0x561e7b1da870
+   {
+      *[0](0x561e7b1da870, 0x561e7b1da870) = 1
+      [1](0x561e7b1da874, 0x561e7b1da874) = 0
+      [2](0x561e7b1da878, 0x561e7b1da878) = 0
+   }
+   file_with_errors[0x561e7b1da2c0] = 0x561e7b1da690
+}
+
+Called from stack_pop() at stack.cpp(189),
+Stack[0x561e7b1da2a0](ok)
+{
+   capacity = 1
+   current size = 0
+   data[0x561e7b1da2b0] = 0x561e7b1da870
+   {
+      [0](0x561e7b1da870, 0x561e7b1da870) = 666
+   }
+   file_with_errors[0x561e7b1da2c0] = 0x561e7b1da690
+}
+
+Called from stack_push() at stack.cpp(151),
+Stack[0x561e7b1da2a0](ok)
+{
+   capacity = 1
+   current size = 1
+   data[0x561e7b1da2b0] = 0x561e7b1da870
+   {
+      *[0](0x561e7b1da870, 0x561e7b1da870) = 5
+   }
+   file_with_errors[0x561e7b1da2c0] = 0x561e7b1da690
+}
+
+Called from stack_pop() at stack.cpp(189),
+Stack[0x561e7b1da2a0](ok)
+{
+   capacity = 0
+   current size = 0
+   data[0x561e7b1da2b0] = (nil)
+   {
+   }
+   file_with_errors[0x561e7b1da2c0] = 0x561e7b1da690
+}
+
+Called from stack_push() at stack.cpp(151),
+Stack[0x561e7b1da2a0](ok)
+{
+   capacity = 3
+   current size = 1
+   data[0x561e7b1da2b0] = 0x561e7b1da870
+   {
+      *[0](0x561e7b1da870, 0x561e7b1da870) = 2
+      [1](0x561e7b1da874, 0x561e7b1da874) = 0
+      [2](0x561e7b1da878, 0x561e7b1da878) = 0
+   }
+   file_with_errors[0x561e7b1da2c0] = 0x561e7b1da690
+}
+
+Called from stack_pop() at stack.cpp(189),
+Stack[0x561e7b1da2a0](ok)
+{
+   capacity = 1
+   current size = 0
+   data[0x561e7b1da2b0] = 0x561e7b1da870
+   {
+      [0](0x561e7b1da870, 0x561e7b1da870) = 666
+   }
+   file_with_errors[0x561e7b1da2c0] = 0x561e7b1da690
+}
+
+Called from stack_push() at stack.cpp(151),
+Stack[0x561e7b1da2a0](ok)
+{
+   capacity = 1
+   current size = 1
+   data[0x561e7b1da2b0] = 0x561e7b1da870
+   {
+      *[0](0x561e7b1da870, 0x561e7b1da870) = 5
+   }
+   file_with_errors[0x561e7b1da2c0] = 0x561e7b1da690
+}
+
+Called from stack_push() at stack.cpp(151),
+Stack[0x561e7b1da2a0](ok)
+{
+   capacity = 6
+   current size = 2
+   data[0x561e7b1da2b0] = 0x561e7b1da870
+   {
+      *[0](0x561e7b1da870, 0x561e7b1da870) = 5
+      *[1](0x561e7b1da874, 0x561e7b1da874) = 5
+      [2](0x561e7b1da878, 0x561e7b1da878) = 0
+      [3](0x561e7b1da87c, 0x561e7b1da87c) = 0
+      [4](0x561e7b1da880, 0x561e7b1da880) = 0
+      [5](0x561e7b1da884, 0x561e7b1da884) = 0
+   }
+   file_with_errors[0x561e7b1da2c0] = 0x561e7b1da690
+}
+
+Called from stack_pop() at stack.cpp(189),
+Stack[0x561e7b1da2a0](ok)
+{
+   capacity = 3
+   current size = 1
+   data[0x561e7b1da2b0] = 0x561e7b1da870
+   {
+      *[0](0x561e7b1da870, 0x561e7b1da870) = 5
+      [1](0x561e7b1da874, 0x561e7b1da874) = 666
+      [2](0x561e7b1da878, 0x561e7b1da878) = 0
+   }
+   file_with_errors[0x561e7b1da2c0] = 0x561e7b1da690
+}
+
+Called from stack_pop() at stack.cpp(189),
+Stack[0x561e7b1da2a0](ok)
+{
+   capacity = 1
+   current size = 0
+   data[0x561e7b1da2b0] = 0x561e7b1da870
+   {
+      [0](0x561e7b1da870, 0x561e7b1da870) = 666
+   }
+   file_with_errors[0x561e7b1da2c0] = 0x561e7b1da690
+}
+
+Called from stack_push() at stack.cpp(151),
+Stack[0x561e7b1da2a0](ok)
+{
+   capacity = 1
+   current size = 1
+   data[0x561e7b1da2b0] = 0x561e7b1da870
+   {
+      *[0](0x561e7b1da870, 0x561e7b1da870) = 25
+   }
+   file_with_errors[0x561e7b1da2c0] = 0x561e7b1da690
+}
+
+Called from stack_push() at stack.cpp(151),
+Stack[0x561e7b1da2a0](ok)
+{
+   capacity = 6
+   current size = 2
+   data[0x561e7b1da2b0] = 0x561e7b1da870
+   {
+      *[0](0x561e7b1da870, 0x561e7b1da870) = 25
+      *[1](0x561e7b1da874, 0x561e7b1da874) = 4
+      [2](0x561e7b1da878, 0x561e7b1da878) = 0
+      [3](0x561e7b1da87c, 0x561e7b1da87c) = 0
+      [4](0x561e7b1da880, 0x561e7b1da880) = 0
+      [5](0x561e7b1da884, 0x561e7b1da884) = 0
+   }
+   file_with_errors[0x561e7b1da2c0] = 0x561e7b1da690
+}
+
+Called from stack_push() at stack.cpp(151),
+Stack[0x561e7b1da2a0](ok)
+{
+   capacity = 6
+   current size = 3
+   data[0x561e7b1da2b0] = 0x561e7b1da870
+   {
+      *[0](0x561e7b1da870, 0x561e7b1da870) = 25
+      *[1](0x561e7b1da874, 0x561e7b1da874) = 4
+      *[2](0x561e7b1da878, 0x561e7b1da878) = 1
+      [3](0x561e7b1da87c, 0x561e7b1da87c) = 0
+      [4](0x561e7b1da880, 0x561e7b1da880) = 0
+      [5](0x561e7b1da884, 0x561e7b1da884) = 0
+   }
+   file_with_errors[0x561e7b1da2c0] = 0x561e7b1da690
+}
+
+Called from stack_push() at stack.cpp(151),
+Stack[0x561e7b1da2a0](ok)
+{
+   capacity = 6
+   current size = 4
+   data[0x561e7b1da2b0] = 0x561e7b1da870
+   {
+      *[0](0x561e7b1da870, 0x561e7b1da870) = 25
+      *[1](0x561e7b1da874, 0x561e7b1da874) = 4
+      *[2](0x561e7b1da878, 0x561e7b1da878) = 1
+      *[3](0x561e7b1da87c, 0x561e7b1da87c) = 2
+      [4](0x561e7b1da880, 0x561e7b1da880) = 0
+      [5](0x561e7b1da884, 0x561e7b1da884) = 0
+   }
+   file_with_errors[0x561e7b1da2c0] = 0x561e7b1da690
+}
+
+Called from stack_pop() at stack.cpp(189),
+Stack[0x561e7b1da2a0](ok)
+{
+   capacity = 3
+   current size = 3
+   data[0x561e7b1da2b0] = 0x561e7b1da870
+   {
+      *[0](0x561e7b1da870, 0x561e7b1da870) = 25
+      *[1](0x561e7b1da874, 0x561e7b1da874) = 4
+      *[2](0x561e7b1da878, 0x561e7b1da878) = 1
+   }
+   file_with_errors[0x561e7b1da2c0] = 0x561e7b1da690
+}
+
+Called from stack_pop() at stack.cpp(189),
+Stack[0x561e7b1da2a0](ok)
+{
+   capacity = 3
+   current size = 2
+   data[0x561e7b1da2b0] = 0x561e7b1da870
+   {
+      *[0](0x561e7b1da870, 0x561e7b1da870) = 25
+      *[1](0x561e7b1da874, 0x561e7b1da874) = 4
+      [2](0x561e7b1da878, 0x561e7b1da878) = 666
+   }
+   file_with_errors[0x561e7b1da2c0] = 0x561e7b1da690
+}
+
+Called from stack_push() at stack.cpp(151),
+Stack[0x561e7b1da2a0](ok)
+{
+   capacity = 3
+   current size = 3
+   data[0x561e7b1da2b0] = 0x561e7b1da870
+   {
+      *[0](0x561e7b1da870, 0x561e7b1da870) = 25
+      *[1](0x561e7b1da874, 0x561e7b1da874) = 4
+      *[2](0x561e7b1da878, 0x561e7b1da878) = 2
+   }
+   file_with_errors[0x561e7b1da2c0] = 0x561e7b1da690
+}
+
+Called from stack_pop() at stack.cpp(189),
+Stack[0x561e7b1da2a0](ok)
+{
+   capacity = 3
+   current size = 2
+   data[0x561e7b1da2b0] = 0x561e7b1da870
+   {
+      *[0](0x561e7b1da870, 0x561e7b1da870) = 25
+      *[1](0x561e7b1da874, 0x561e7b1da874) = 4
+      [2](0x561e7b1da878, 0x561e7b1da878) = 666
+   }
+   file_with_errors[0x561e7b1da2c0] = 0x561e7b1da690
+}
+
+Called from stack_pop() at stack.cpp(189),
+Stack[0x561e7b1da2a0](ok)
+{
+   capacity = 1
+   current size = 1
+   data[0x561e7b1da2b0] = 0x561e7b1da870
+   {
+      *[0](0x561e7b1da870, 0x561e7b1da870) = 25
+   }
+   file_with_errors[0x561e7b1da2c0] = 0x561e7b1da690
+}
+
+Called from stack_push() at stack.cpp(151),
+Stack[0x561e7b1da2a0](ok)
+{
+   capacity = 6
+   current size = 2
+   data[0x561e7b1da2b0] = 0x561e7b1da870
+   {
+      *[0](0x561e7b1da870, 0x561e7b1da870) = 25
+      *[1](0x561e7b1da874, 0x561e7b1da874) = 8
+      [2](0x561e7b1da878, 0x561e7b1da878) = 666
+      [3](0x561e7b1da87c, 0x561e7b1da87c) = 666
+      [4](0x561e7b1da880, 0x561e7b1da880) = 0
+      [5](0x561e7b1da884, 0x561e7b1da884) = 0
+   }
+   file_with_errors[0x561e7b1da2c0] = 0x561e7b1da690
+}
+
+Called from stack_pop() at stack.cpp(189),
+Stack[0x561e7b1da2a0](ok)
+{
+   capacity = 3
+   current size = 1
+   data[0x561e7b1da2b0] = 0x561e7b1da870
+   {
+      *[0](0x561e7b1da870, 0x561e7b1da870) = 25
+      [1](0x561e7b1da874, 0x561e7b1da874) = 666
+      [2](0x561e7b1da878, 0x561e7b1da878) = 666
+   }
+   file_with_errors[0x561e7b1da2c0] = 0x561e7b1da690
+}
+
+Called from stack_pop() at stack.cpp(189),
+Stack[0x561e7b1da2a0](ok)
+{
+   capacity = 1
+   current size = 0
+   data[0x561e7b1da2b0] = 0x561e7b1da870
+   {
+      [0](0x561e7b1da870, 0x561e7b1da870) = 666
+   }
+   file_with_errors[0x561e7b1da2c0] = 0x561e7b1da690
+}
+
+Called from stack_push() at stack.cpp(151),
+Stack[0x561e7b1da2a0](ok)
+{
+   capacity = 1
+   current size = 1
+   data[0x561e7b1da2b0] = 0x561e7b1da870
+   {
+      *[0](0x561e7b1da870, 0x561e7b1da870) = 17
+   }
+   file_with_errors[0x561e7b1da2c0] = 0x561e7b1da690
+}
+
+}
+

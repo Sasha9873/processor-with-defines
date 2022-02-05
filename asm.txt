@@ -1,0 +1,17 @@
+IN
+RPOP rax
+IN
+RPOP rbx
+IN
+RPOP rcx
+RPUSH rbx
+RPUSH rbx
+MUL
+PUSH 4
+RPUSH rax
+RPUSH rcx
+MUL
+MUL
+SUB
+OUT
+HLT
