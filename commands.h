@@ -48,3 +48,67 @@ DEFCMD(RPOP, 33, 1,{
 DEFCMD(RPUSH, 34, 1,{
 	stack_push(processor->stk, processor->regs[processor->code[processor->ip + 1] - 1]);
 })
+
+/*DEFCMD(JA, 7, 1{
+	int a = stack_pop(processor->stk);
+	int b = stack_pop(processor->stk);
+
+	if(b > a)
+		processor->ip = processor->code[processor->ip + 1];
+	else
+		processor->ip++;
+})
+
+DEFCMD(JAE, 8, 1{
+	int a = stack_pop(processor->stk);
+	int b = stack_pop(processor->stk);
+
+	if(b >= a)
+		processor->ip = processor->code[processor->ip + 1];
+	else
+		processor->ip++;
+})
+
+DEFCMD(JB, 9, 1{
+	int a = stack_pop(processor->stk);
+	int b = stack_pop(processor->stk);
+
+	if(b < a)
+		processor->ip = processor->code[processor->ip + 1];
+	else
+		processor->ip++;
+})
+
+DEFCMD(JBE, 10, 1{
+	int a = stack_pop(processor->stk);
+	int b = stack_pop(processor->stk);
+
+	if(b <= a)
+		processor->ip = processor->code[processor->ip + 1];
+	else
+		processor->ip++;
+})
+
+DEFCMD(JE, 11, 1{
+	int a = stack_pop(processor->stk);
+	int b = stack_pop(processor->stk);
+
+	if(b == a)
+		processor->ip = processor->code[processor->ip + 1];
+	else
+		processor->ip++;
+})
+
+DEFCMD(JNE, 12, 1{
+	int a = stack_pop(processor->stk);
+	int b = stack_pop(processor->stk);
+
+	if(b != a)
+		processor->ip = processor->code[processor->ip + 1];
+	else
+		processor->ip++;
+})
+
+DEFCMD(JMP, 13, 1{
+	processor->ip = processor->code[processor->ip + 1];
+})*/

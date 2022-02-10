@@ -1,3 +1,5 @@
+#include <stddef.h>
+
 typedef enum errors{
     ALL_OK      =  0,
     NOT_MEMORY  = -1,
@@ -5,6 +7,26 @@ typedef enum errors{
     BAD_ENTRY   = -3,
     BAD_COMMAND = -4,
 }errors_t;
+
+
+typedef struct labels{
+    char* key;
+    int ip;
+    struct labels* next;
+}labels;
+
+typedef struct{
+    const length = 100003;
+    labels* table[100003];
+}hash_table;
+
+
+int add_elem(hash_table* tab, char* key, int value);
+hash_table* create_tab(errors_t* error);
+void clear_hash(hash_table* tab);
+int str_hash(char* str);
+int get_ip(char* key, hash_table* tab);
+
 
 
 int* asembler(FILE* file_asm, FILE* code_txt, errors_t* error, struct processor* proc);
