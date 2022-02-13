@@ -3,7 +3,7 @@
 #include <cstdio>
 #include <cassert>
 #include <cstdlib>
-#include <cstring>
+#include <cstring>/**/
 
 #define CHECK 0
 

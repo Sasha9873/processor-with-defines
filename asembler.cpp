@@ -14,7 +14,20 @@ int main()
 
     errors_t error;
     printf("%p\n", proc.code);
-    proc.code = asembler(file_asm, code_txt, &error, &proc);
+
+    hash_table* tab = create_tab(&error);
+
+    proc.code = asembler(file_asm, code_txt, &error, &proc, tab);
+    //printf("\nhash_kel = %d\n\n", str_hash("kel", tab));
+    //printf("%p key = %s ip = %d\n\n", tab->table[str_hash("kel", tab)], tab->table[str_hash("kel", tab)]->key, tab->table[str_hash("kel", tab)]->ip);
+    
+    fclose(code_txt);
+    code_txt = fopen("code.txt", "wb+");/**/
+    fseek(file_asm, 0, SEEK_SET);
+
+
+    proc.code = asembler(file_asm, code_txt, &error, &proc, tab);
+
 
     printf("error = %d\n", error);
 
@@ -30,8 +43,15 @@ int main()
     return 0;
 }
 
-int* asembler(FILE* file_asm, FILE* code_txt, errors_t* error, struct processor* proc)
+int* asembler(FILE* file_asm, FILE* code_txt, errors_t* error, struct processor* proc, hash_table* tab)
 {
+    /*if(tab->table[str_hash("kel", tab)] != NULL){
+        fprintf(code_txt, "\n111111111 %p key = %s ip = %d\n\n", tab->table[str_hash("kel", tab)], tab->table[str_hash("kel", tab)]->key, tab->table[str_hash("kel", tab)]->ip);
+        printf("AAAAA %p key = %s ip = %d\n\n", tab->table[str_hash("kel", tab)], tab->table[str_hash("kel", tab)]->key, tab->table[str_hash("kel", tab)]->ip);
+    }
+    fprintf(code_txt, "jjbjbjbj\n");*/
+
+    
     char cmd[10];
     char reg[10];
 
@@ -46,11 +66,10 @@ int* asembler(FILE* file_asm, FILE* code_txt, errors_t* error, struct processor*
     int len = 0;
     int pop_cmd = 0;
 
-    hash_table* tab = create_tab(error);
 
-    int labels[10];
+    /*int labels[10];
     for(int i = 0; i < 10; i++)
-        labels[i] = 0;
+        labels[i] = 0;*/
 
     while(!feof(file_asm) ){
         len = 0;
@@ -81,9 +100,14 @@ int* asembler(FILE* file_asm, FILE* code_txt, errors_t* error, struct processor*
         //printf("k1 = %d k2 = %d %s %s %s\n", k1, k2, cmd, reg, trash);
 
         #include "commands.h"
-        /*else*/ if(cmd[strlen(cmd) - 1] == ':')
-            add_elem(tab, cmd, -1);//обрезать : !!!1
-            labels[cmd[0] - '0'] = proc->ip;
+        /*else*/ if(cmd[strlen(cmd) - 1] == ':'){
+            strncpy(reg, cmd, strlen(cmd) - 1); //delete ':'
+            reg[strlen(cmd) - 1] = '\0';
+            printf("cmd = %s, reg = %s cmd_len = %ld\n", cmd, reg, strlen(cmd));
+            if(get_ip(reg, tab, error) == -6)
+                add_elem(tab, reg, proc->ip);
+            //labels[cmd[0] - '0'] = proc->ip;
+        }
         else{
             *error = BAD_COMMAND;
             return code;
@@ -101,45 +125,45 @@ int* asembler(FILE* file_asm, FILE* code_txt, errors_t* error, struct processor*
 
     fwrite(code, sizeof(code[0]), proc->ip, proc->code_bin);
 
-    /*printf("\n \n \ncode:%n", proc->code);
-
-    free(code);
-    code = NULL;*/
-    for(int i = 0; i < 10; i++)
-        printf("label[%d] = %d\n", i, labels[i]);
-
     return code;
 
 }
 
 
-int what_arg(int k_str_num, int k_strs, char* reg)
+int what_arg(int k_str_num, int k_strs, char* reg, char* key, hash_table* tab, errors_t* error)
 {
     if(k_str_num == 2)
-        return 0;
+        return -5;
+
+    if(key != NULL && tab != NULL){
+        printf("ip = %d\n", get_ip(key, tab, error));
+        return get_ip(key, tab, error);
+    }
 
     if(strcmp(reg, "rax") == 0)
-        return 1;
+        return -1;
     else if(strcmp(reg, "rbx") == 0)
-        return 2;
+        return -2;
     else if(strcmp(reg, "rcx") == 0)
-        return 3;
+        return -3;
     else if(strcmp(reg, "rdx") == 0)
-        return 4;
-
-    return -1;
+        return -4;
+    
+    return -7;
 
 }
 
 
-hash_table* create_tab()
+hash_table* create_tab(errors_t* error)
 {
     hash_table* tab = (hash_table*)malloc(sizeof(hash_table));
     if(tab == NULL)
         return tab;
 
+    tab->length = 100003;
+
     int index = 0;
-    for(index = 0; index < LEN_TAB; index++){
+    for(index = 0; index < tab->length; index++){
         tab->table[index] = NULL;
     }
 
@@ -148,14 +172,21 @@ hash_table* create_tab()
 
 int add_elem(hash_table* tab, char* key, int value)
 {
-    int hash = str_hash(key);
+    int hash = str_hash(key, tab);
+
     if(!tab->table[hash])
     {
         tab->table[hash] = (labels*)malloc(sizeof(labels));
-        strcpy(tab->table[hash]->key, key);
-        tab->table[hash]->ip = value;
-        tab->table[hash]->next = NULL;
-        return ALL_OK;
+
+        if(tab->table[hash] != NULL){
+            tab->table[hash]->key = (char*)malloc(sizeof(char) * (strlen(key) + 1));
+            strcpy(tab->table[hash]->key, key);
+            tab->table[hash]->ip = value;
+            tab->table[hash]->next = NULL;
+            return ALL_OK;
+        }
+
+        return NOT_MEMORY;
     }
 
     labels* ptr = tab->table[hash];
@@ -183,7 +214,6 @@ void write_hash(hash_table* tab)
 {
     for(int i = 0; i < tab->length; i++)
     {
-        printf("")
         labels* ptr = tab->table[i];
         while(ptr != NULL)
         {
@@ -197,19 +227,34 @@ void write_hash(hash_table* tab)
 /**/
 
 
-int get_ip(char* key, hash_table* tab)
+int get_ip(char* key, hash_table* tab, errors_t* error)
 {
-    int hash = str_hash(key);
+    printf("jkkj00\n");
+    if(tab == NULL){
+        *error = NULL_POINTER;
+        printf("NULL_POINTER\n");
+        return NULL_POINTER;
+    }
 
-    labels* cur = tab->table[hash];
+    int hash = str_hash(key, tab);
+    printf("khash = %d\n", hash);
+
+    labels* cur;
+
+    if(tab->table[hash] != NULL)
+        cur = tab->table[hash];
+    else
+        return -6;
 
     while(strcmp(cur->key, key) != 0 && cur != NULL)
     {
         cur = cur->next;
     }
 
-    if(cur == NULL)
-        return -1;
+    if(cur == NULL){
+        printf("NULL cur\n");
+        return -6;
+    }
 
     return cur->ip;
 }
@@ -230,17 +275,17 @@ void clear_hash(hash_table* tab)
 
 
 
-int str_hash(char* str)
+int str_hash(char* str, hash_table* tab)
 {
-    const int coeff = 17;
+    int coeff = 17;
     int hash = 0, coeff_pow = 1;
+
     for (int index = 0; index < strlen(str); index++)
     {
-        hash += str[index] * coeff_pow;
+        hash += int(str[index]) * coeff_pow;
         coeff_pow *= coeff;
-
-        hash %= LEN_LABEL;
-        coeff_pow %= LEN_LABEL;
+        hash %= tab->length;
+        coeff_pow %= tab->length;
     }
     return hash;
 }

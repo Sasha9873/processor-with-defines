@@ -1,18 +1,13 @@
-IN
-2:
+PUSH 10
 RPOP rax
-IN
-RPOP rbx
-IN
-RPOP rcx
-RPUSH rbx
-RPUSH rbx
-MUL
-PUSH 4
+next:
 RPUSH rax
-RPUSH rcx
-MUL
-MUL
+PUSH 1
+RPUSH rax 
+PUSH 1
 SUB
+RPOP rax
+JA next
+stop:
 OUT
 HLT
