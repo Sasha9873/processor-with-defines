@@ -3,6 +3,9 @@
 
 int stack_ctor(Stack* stack1)
 {
+    if(stack1 == NULL)
+        return NULL_POINTER;
+    
     if(stack1->data == POINTER_13){
 
         #ifdef DATA_USE_CANARY

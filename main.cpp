@@ -6,6 +6,8 @@ int main()
     Processor proc = {};
     proc.stk = (struct Stack*)calloc(1, sizeof(Stack));
     *proc.stk = {};
+    proc.flag =(struct Flags*)calloc(1, sizeof(Flags));
+
 
     FILE* code_txt = fopen("code.txt", "r");
     if((proc.code_bin = fopen("code.bin", "r")) == NULL)
@@ -33,6 +35,8 @@ int main()
     execute(&proc);
 
     fclose(code_txt);/**/
+    free(proc.stk);
+    free(proc.flag);
 
     return 0;
 }

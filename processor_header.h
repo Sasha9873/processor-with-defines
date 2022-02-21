@@ -43,6 +43,7 @@ static const char *error_names[] = {
     "NULL pointer to massif with code", //20
     "Instraction pointer smaller than 0",
     "Negative size of the code",
+    "Null pointer",
 };
 
 typedef enum errors{ALL_OK                  = 0,
@@ -67,7 +68,8 @@ typedef enum errors{ALL_OK                  = 0,
                     NULL_CODE_BIN           = -19,
                     NULL_CODE               = -20,
                     BAD_INSTRACTION_POINTER = -21,
-                    NEGATIVE_CODE_SIZE      = -22}
+                    NEGATIVE_CODE_SIZE      = -22,
+                    NULL_POINTER            = -23}
 errors_t;
 
 int execute(processor* processor);

@@ -78,10 +78,17 @@ struct Stack
     #endif
 };
 
+struct Flags{
+    int zero_flag;
+    int size_flag;
+    int overfloat_flag;
+};
+
 
 typedef struct processor{
     struct Stack* stk;
     int regs[4];
+    struct Flags* flag;
     int* code;
     int ip = 0;
     long int size_code = 0;

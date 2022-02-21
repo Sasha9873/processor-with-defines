@@ -1,5 +1,5 @@
 #include <stddef.h>
-#include <math.h>
+#include <math.h>/**/
 
 typedef enum errors{
     ALL_OK       =  0,
@@ -51,7 +51,7 @@ int init_arg(int* code, int arg_is, FILE* code_txt, errors_t* error, struct proc
 #define DEFCMD(name, num, arg, ...)\
 if (strcmp(cmd, #name) == 0){\
     code[proc->ip] = num;\
-    if(arg){\
+    if(arg == 1){\
         int arg_is = 0;\
         if(num >= 7 && num <= 13)\
             arg_is = what_arg(k_str_num, k_strs, reg, reg, tab, error);\
@@ -88,6 +88,35 @@ if (strcmp(cmd, #name) == 0){\
             fprintf(code_txt,"%04d   %02x ", proc->ip - 1, num);\
             fprintf(code_txt,"%02x\t %s ", code[proc->ip], #name);\
             fprintf(code_txt,"%d\n", code[proc->ip]);\
+        }\
+    }\
+    else if(arg == 2){\
+        printf("k_strs = %d, name = %s\n", k_strs, #name); fflush(stdin);\
+        if(k_strs != 3){\
+            printf("k_strs = %d, name = %s\n", k_strs, #name);\
+            *error = BAD_ENTRY;\
+            return code;\
+        }\
+        char new_reg[10];\
+        strncpy(new_reg, reg, strlen(reg) - 1);\
+        new_reg[strlen(reg) - 1] = '\0';\
+        int arg_is = what_arg(k_str_num, k_strs, new_reg, NULL, NULL, error);\
+        if(arg_is == -1 || arg_is == -2 || arg_is == -3 || arg_is == -4){\
+            proc->ip++;\
+            printf("reg = %s arg_is = %d\n", new_reg, arg_is);\
+            printf("%d ", code[proc->ip-1]);fflush(stdin);\
+            code[proc->ip] = abs(arg_is);\
+            proc->ip++;\
+            code[proc->ip] = digit;\
+            printf("%d\n", code[proc->ip]);fflush(stdin);\
+            fprintf(code_txt,"%04d   %02x ", proc->ip - 1, num);\
+            fprintf(code_txt,"%02x %02d\t %s ", code[proc->ip - 1], digit, #name);\
+            fprintf(code_txt,"%d %d\n", code[proc->ip - 1], digit);\
+        }\
+        else{\
+            printf("k_strs = %d, name = %s\n", k_strs, #name);\
+            *error = BAD_REG;\
+            return code;\
         }\
     }\
     else if(k_strs != 1){\

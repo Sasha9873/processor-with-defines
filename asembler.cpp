@@ -94,10 +94,11 @@ int* asembler(FILE* file_asm, FILE* code_txt, errors_t* error, struct processor*
             break;
 
         char trash[10];
+        int digit = 0;
 
         int k_str_num = sscanf(str, "%s %d %s", cmd, &value, trash);
-        int k_strs = sscanf(str, "%s %s %s", cmd, reg, trash);
-        //printf("k1 = %d k2 = %d %s %s %s\n", k1, k2, cmd, reg, trash);
+        int k_strs = sscanf(str, "%s %s %d %s", cmd, reg, &digit, trash);
+        printf("k_strs = %d k_str_num = %d %s %s %s\n", k_strs, k_str_num, cmd, reg, trash);
 
         #include "commands.h"
         /*else*/ if(cmd[strlen(cmd) - 1] == ':'){
