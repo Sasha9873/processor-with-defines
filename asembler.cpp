@@ -25,6 +25,9 @@ int main()
     code_txt = fopen("code.txt", "wb+");/**/
     fseek(file_asm, 0, SEEK_SET);
 
+    fclose(proc.code_bin);
+    proc.code_bin = fopen("code_bin", "wb+");/**/
+
 
     proc.code = asembler(file_asm, code_txt, &error, &proc, tab);
 

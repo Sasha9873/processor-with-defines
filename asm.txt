@@ -1,15 +1,16 @@
 PUSH 10
 RPOP rax
 next:
-RPUSH rax
+CALL Func_next
+CMP rax, 1
+JA next
+OUT
+HLT
+Func_next:
 RPUSH rax
 PUSH 1
 SUB
 OUT
 RPOP rax
 OUT 
-CMP rax, 1
-JA next
-stop:
-OUT
-HLT
+RET

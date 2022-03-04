@@ -49,6 +49,15 @@ DEFCMD(RPUSH, 34, 1,{
 	stack_push(processor->stk, processor->regs[processor->code[processor->ip + 1] - 1]);
 })
 
+DEFCMD(CALL, 6, 1,{
+	stack_push(processor->stk, processor->ip);
+	processor->ip = processor->code[processor->ip + 1];
+})
+
+DEFCMD(RET, 27, 0,{
+	processor->ip = stack_pop(processor->stk);
+})
+
 DEFCMD(CMP, 25, 2,{
 	printf("a = %d b = %d", processor->regs[processor->code[processor->ip + 1] - 1], processor->code[processor->ip + 2]);
 	fflush(stdin);

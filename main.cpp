@@ -11,8 +11,8 @@ int main()
 
     FILE* code_txt = fopen("code.txt", "r");
     if((proc.code_bin = fopen("code.bin", "r")) == NULL)
-        NULL_CODE_BIN;
-    proc.stk->file_with_errors = fopen("listing.txt", "w+");
+        return NULL_CODE_BIN;
+    proc.stk->file_with_errors = fopen("proc_listing.txt", "w+");
 
     stack_ctor(proc.stk);
 

@@ -30,7 +30,6 @@ int str_hash(char* str, hash_table* tab);
 int get_ip(char* key, hash_table* tab, errors_t* error);
 
 
-
 int* asembler(FILE* file_asm, FILE* code_txt, errors_t* error, struct processor* proc, hash_table* tab);
 int listing(FILE* file_lst, int* code);
 
@@ -53,7 +52,7 @@ if (strcmp(cmd, #name) == 0){\
     code[proc->ip] = num;\
     if(arg == 1){\
         int arg_is = 0;\
-        if(num >= 7 && num <= 13)\
+        if(num >= 7 && num <= 13 || num == 6)\
             arg_is = what_arg(k_str_num, k_strs, reg, reg, tab, error);\
         else\
             arg_is = what_arg(k_str_num, k_strs, reg, NULL, NULL, error);\

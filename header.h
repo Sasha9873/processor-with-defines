@@ -93,6 +93,7 @@ typedef struct processor{
     int ip = 0;
     long int size_code = 0;
     FILE* code_bin = NULL;
+    FILE* file_with_errors = NULL;
 }Processor;
 
 

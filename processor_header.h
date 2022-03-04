@@ -6,16 +6,31 @@
 #include "enum.h"
 
 #define CHECKSTACK(reason)\
-    if(!stack_ok(stack1)){\
-    fprintf(stack1->file_with_errors, "Called from %s() at %s(%d),\n", __FUNCTION__, __FILE__, __LINE__);\
-    stack_dump(stack1, reason);\
-}
+    if(stack_ok(stack1)){\
+        fprintf(stack1->file_with_errors, "Called from %s() at %s(%d),\n", __FUNCTION__, __FILE__, __LINE__);\
+        stack_dump(stack1, reason);\
+    }\
+    else{\
+        fprintf(stack1->file_with_errors, "Called from %s() at %s(%d),\n", __FUNCTION__, __FILE__, __LINE__);\
+        stack_dump(stack1, reason);\
+    }
+
+#define CHECKPROC(reason)\
+    if(verify(processor)){\
+        fprintf(processor->file_with_errors, "Called from %s() at %s(%d),\n", __FUNCTION__, __FILE__, __LINE__);\
+        processor_dump(processor, reason);\
+    }\
+    else{\
+        fprintf(processor->file_with_errors, "Called from %s() at %s(%d),\n", __FUNCTION__, __FILE__, __LINE__);\
+        processor_dump(processor, reason);\
+    }
 
 #define DEFCMD(name, num, arg, ...)\
     case CMD_##name:{\
         __VA_ARGS__\
-    processor->ip += arg + 1;\
-    break;\
+        processor->ip += arg + 1;\
+        CHECKPROC(ALL_OK);\
+        break;\
     }\
 
 
@@ -72,7 +87,6 @@ typedef enum errors{ALL_OK                  = 0,
                     NULL_POINTER            = -23}
 errors_t;
 
-int execute(processor* processor);
 int stack_push(Stack* stack1, int value);
 int stack_pop(Stack* stack1);
 int stack_ctor(Stack* stack1);
@@ -81,6 +95,9 @@ errors_t stack_ok(Stack* stack1);    //enum errors stack_ok
 int stack_dump(Stack* stack1, errors_t reason = ALL_OK);
 int stack_hash(Stack* stack1, errors_t reason = ALL_OK);
 int stack_print(Stack* stack1);
+
+int execute(processor* processor);
 errors_t verify(processor* processor);
+int processor_dump(processor* proc, errors_t reason);
 
 int processor(Stack* stack1, processor* processor);
